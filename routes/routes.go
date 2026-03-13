@@ -54,6 +54,7 @@ func (r *Routes) Setup() http.Handler {
 	protectedMux.HandleFunc("/api/v1/messages/video", r.messageHandler.SendVideoMessage)
 	protectedMux.HandleFunc("/api/v1/messages/location", r.messageHandler.SendLocationMessage)
 	protectedMux.HandleFunc("/api/v1/messages/contact", r.messageHandler.SendContactMessage)
+	protectedMux.HandleFunc("/api/v1/messages/cta-button", r.messageHandler.SendCTAButtonMessage)
 	protectedMux.HandleFunc("/api/v1/groups", r.messageHandler.CreateGroup)
 	protectedMux.HandleFunc("/api/v1/groups/list", r.messageHandler.ListGroups)
 

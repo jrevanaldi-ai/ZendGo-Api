@@ -392,6 +392,41 @@ func (s *WhatsAppService) SendContactMessage(ctx context.Context, sessionID uuid
 	return msg, nil
 }
 
+func (s *WhatsAppService) SendCTAButtonMessage(ctx context.Context, sessionID uuid.UUID, recipient, text, buttonText, url string) (*models.Message, error) {
+	s.mu.RLock()
+	client, ok := s.clients[sessionID]
+	s.mu.RUnlock()
+
+	if !ok {
+		return nil, fmt.Errorf("session not found")
+	}
+
+	msg := &models.Message{
+		ID:          uuid.New(),
+		SessionID:   sessionID,
+		Recipient:   recipient,
+		MessageType: models.MessageTypeText,
+		Content:     fmt.Sprintf("%s - %s", text, url),
+		Status:      models.MessageStatusQueued,
+	}
+
+	if err := s.messageRepo.Create(ctx, msg); err != nil {
+		return nil, fmt.Errorf("failed to save message: %w", err)
+	}
+
+	waMessageID, err := client.SendCTAButtonMessage(ctx, recipient, text, buttonText, url)
+	if err != nil {
+		s.messageRepo.UpdateStatus(ctx, msg.ID, models.MessageStatusFailed, "", err.Error())
+		return nil, err
+	}
+
+	s.messageRepo.UpdateStatus(ctx, msg.ID, models.MessageStatusSent, waMessageID, "")
+	msg.Status = models.MessageStatusSent
+	msg.WAMessageID = waMessageID
+
+	return msg, nil
+}
+
 func (s *WhatsAppService) CreateGroup(ctx context.Context, sessionID uuid.UUID, name string, participants []string) (*whatsapp.GroupInfo, error) {
 	s.mu.RLock()
 	client, ok := s.clients[sessionID]

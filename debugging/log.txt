@@ -1,9 +1,49 @@
-[2026-03-13 03:27:22] Session Created - ID: 6e893117-3a88-4fa8-9b29-9fa6b8ed9d5d, Phone: 628987654321, Status: connecting
-[2026-03-13 03:27:22] API Key: 0ee8b39f9c549303278f8ca4eda1bf838038e129f3cef68244fad5df022a9328
-[2026-03-13 03:27:22] Webhook URL: (empty)
+[2026-03-13 03:38:45] Session Created - ID: bba20bc4-4871-481e-8978-a9f4205ef49f, Phone: 6287736932256, Status: connecting
+[2026-03-13 03:38:45] API Key: 24bf7b1ece56b1a36bfe510ea120a035759156b5e6ac38827c8da868fc0b0f67
+[2026-03-13 03:38:45] Webhook URL: (empty)
 
-[2026-03-13 03:27:45] Pairing Code Request - Session ID: 6e893117-3a88-4fa8-9b29-9fa6b8ed9d5d
-[2026-03-13 03:27:45] Phone: 628987654321
-[2026-03-13 03:27:45] Client Type: chrome
-[2026-03-13 03:27:45] Device Name: Chrome (Linux)
-[2026-03-13 03:27:45] Pairing Code Generated: MH9S-H9HF
+[2026-03-13 03:38:52] Pairing Code Request - Session ID: bba20bc4-4871-481e-8978-a9f4205ef49f
+[2026-03-13 03:38:52] Phone: 6287736932256
+[2026-03-13 03:38:52] Client Type: chrome
+[2026-03-13 03:38:52] Device Name: Chrome (Linux)
+[2026-03-13 03:38:52] Pairing Code Generated: W1RL-VFZ6
+
+[2026-03-13 03:42:06] Session Paired - ID: bba20bc4-4871-481e-8978-a9f4205ef49f, Phone: 6287736932256
+
+[2026-03-13 03:45:23] Message Sent - From: 6287736932256, To: 6289526974458
+[2026-03-13 03:45:23] Message: "halo dsri zendgo"
+[2026-03-13 03:45:23] WA Message ID: 3EB03008EAD359790D4448
+[2026-03-13 03:45:23] Status: sent
+
+[2026-03-13 03:48:15] Message Sent - From: 6287736932256, To: 62895416602000
+[2026-03-13 03:48:15] Message: "halo dsri zendgo"
+[2026-03-13 03:48:15] WA Message ID: 3EB0BF812CC1E22B8CC271
+[2026-03-13 03:48:15] Status: sent
+
+[2026-03-13 03:52:38] Image Sent - From: 6287736932256, To: 62895416602000
+[2026-03-13 03:52:38] Image URL: https://picsum.photos/800/600
+[2026-03-13 03:52:38] Caption: "Test image dari ZendGo"
+[2026-03-13 03:52:38] WA Message ID: 3EB0506AEC2D94E4233AE7
+[2026-03-13 03:52:38] Status: sent
+
+[2026-03-13 03:55:12] Video Sent - From: 6287736932256, To: 62895416602000
+[2026-03-13 03:55:12] Video URL: https://www.w3schools.com/html/mov_bbb.mp4
+[2026-03-13 03:55:12] Caption: "Test video dari ZendGo"
+[2026-03-13 03:55:12] WA Message ID: 3EB0ECA59621768DC1005A
+[2026-03-13 03:55:12] Status: sent
+
+[2026-03-13 04:05:23] Session Created - ID: b70632e3-fa51-4353-a7e4-d9cdb8d46a71, Phone: 6287736932256
+[2026-03-13 04:05:23] API Key: a2339365df8e3f4d956411e15dcf15df09e8a20b9ce46d6799946d2b9d308672
+
+[2026-03-13 04:05:45] Pairing Code Request - Session ID: b70632e3-fa51-4353-a7e4-d9cdb8d46a71
+[2026-03-13 04:05:45] Phone: 6287736932256
+[2026-03-13 04:05:45] Pairing Code Generated: 4Y4V-S6KE
+
+[2026-03-13 04:06:30] Session Paired - ID: b70632e3-fa51-4353-a7e4-d9cdb8d46a71, Phone: 6287736932256
+
+[2026-03-13 04:07:15] CTA Button Sent - From: 6287736932256, To: 62895416602000
+[2026-03-13 04:07:15] Text: "Kunjungi website kami"
+[2026-03-13 04:07:15] Button: "Klik Disini"
+[2026-03-13 04:07:15] URL: https://zendgo.com
+[2026-03-13 04:07:15] WA Message ID: 3EB05B7A65F1BC247ED643
+[2026-03-13 04:07:15] Status: sent

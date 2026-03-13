@@ -311,6 +311,42 @@ func (w *WhatsAppClient) downloadMediaWithMime(url string) ([]byte, string, erro
 	return data, mimeType, nil
 }
 
+func (w *WhatsAppClient) SendCTAButtonMessage(ctx context.Context, recipient, text, buttonText, url string) (string, error) {
+	if w.client == nil {
+		return "", fmt.Errorf("client not initialized")
+	}
+
+	jid, err := w.parseJID(recipient)
+	if err != nil {
+		return "", fmt.Errorf("failed to parse JID: %w", err)
+	}
+
+	ctaText := fmt.Sprintf("%s\n\n[%s](%s)", text, buttonText, url)
+
+	msg := &waE2E.Message{
+		Conversation: &ctaText,
+	}
+
+	resp, err := w.client.SendMessage(ctx, jid, msg)
+	if err != nil {
+		return "", fmt.Errorf("failed to send CTA button: %w", err)
+	}
+
+	return resp.ID, nil
+}
+
+func protoInt32(v int32) *int32 {
+	return &v
+}
+
+func protoString(v string) *string {
+	return &v
+}
+
 func protoUint64(v uint64) *uint64 {
+	return &v
+}
+
+func protoUint32(v uint32) *uint32 {
 	return &v
 }

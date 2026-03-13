@@ -62,6 +62,13 @@ type SendContactRequest struct {
 	Organization string `json:"organization"`
 }
 
+type SendCTAButtonRequest struct {
+	Recipient  string `json:"recipient"`
+	Text       string `json:"text"`
+	ButtonText string `json:"button_text"`
+	URL        string `json:"url"`
+}
+
 type MessageResponse struct {
 	Success bool            `json:"success"`
 	Data    *models.Message `json:"data"`
@@ -343,6 +350,44 @@ func (h *MessageHandler) SendContactMessage(w http.ResponseWriter, r *http.Reque
 		Success: true,
 		Data:    msg,
 		Message: "Contact sent successfully",
+	})
+}
+
+func (h *MessageHandler) SendCTAButtonMessage(w http.ResponseWriter, r *http.Request) {
+	sessionID, ok := r.Context().Value("session_id").(uuid.UUID)
+	if !ok {
+		http.Error(w, `{"success":false,"message":"Unauthorized"}`, http.StatusUnauthorized)
+		return
+	}
+
+	var req SendCTAButtonRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, `{"success":false,"message":"Invalid request body"}`, http.StatusBadRequest)
+		return
+	}
+
+	if req.Recipient == "" {
+		http.Error(w, `{"success":false,"message":"Recipient is required"}`, http.StatusBadRequest)
+		return
+	}
+
+	if req.Text == "" || req.URL == "" {
+		http.Error(w, `{"success":false,"message":"Text and URL are required"}`, http.StatusBadRequest)
+		return
+	}
+
+	msg, err := h.service.SendCTAButtonMessage(r.Context(), sessionID, req.Recipient, req.Text, req.ButtonText, req.URL)
+	if err != nil {
+		http.Error(w, jsonEncode(&MessageResponse{Success: false, Message: err.Error()}), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(&MessageResponse{
+		Success: true,
+		Data:    msg,
+		Message: "CTA button sent successfully",
 	})
 }
 
