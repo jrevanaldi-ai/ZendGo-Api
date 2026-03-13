@@ -1,3 +1,5 @@
+Ai yang buat readme nya,malas ketik panjang lebar jir
+
 # ZendGo - WhatsApp Unofficial API
 
 ## Apa Ini?
