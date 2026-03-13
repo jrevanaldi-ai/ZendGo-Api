@@ -246,12 +246,33 @@ func (w *WhatsAppClient) GetQRChannel(ctx context.Context) (<-chan string, error
 	return qrChan, nil
 }
 
-func (w *WhatsAppClient) PairPhone(ctx context.Context, phone string, hasCountryCode bool, pairingCode, deviceName string) (string, error) {
+func (w *WhatsAppClient) PairPhone(ctx context.Context, phone string, hasCountryCode bool, clientType, deviceName string) (string, error) {
 	if w.client == nil {
 		return "", fmt.Errorf("client not initialized")
 	}
 	
-	code, err := w.client.PairPhone(ctx, phone, hasCountryCode, whatsmeow.PairClientChrome, deviceName)
+	pairClientType := whatsmeow.PairClientChrome
+	
+	switch clientType {
+	case "chrome":
+		pairClientType = whatsmeow.PairClientChrome
+	case "edge":
+		pairClientType = whatsmeow.PairClientEdge
+	case "firefox":
+		pairClientType = whatsmeow.PairClientFirefox
+	case "safari":
+		pairClientType = whatsmeow.PairClientSafari
+	case "opera":
+		pairClientType = whatsmeow.PairClientOpera
+	case "electron":
+		pairClientType = whatsmeow.PairClientElectron
+	case "uwp":
+		pairClientType = whatsmeow.PairClientUWP
+	default:
+		pairClientType = whatsmeow.PairClientChrome
+	}
+	
+	code, err := w.client.PairPhone(ctx, phone, true, pairClientType, deviceName)
 	if err != nil {
 		return "", err
 	}

@@ -49,7 +49,7 @@ type QRResponse struct {
 type PairRequest struct {
 	Phone         string `json:"phone"`
 	HasCountryCode *bool  `json:"has_country_code,omitempty"`
-	PairingCode    string `json:"pairing_code,omitempty"`
+	ClientType    string `json:"client_type,omitempty"`
 	DeviceName     string `json:"device_name,omitempty"`
 }
 
@@ -187,7 +187,17 @@ func (h *SessionHandler) PairPhone(w http.ResponseWriter, r *http.Request) {
 		hasCountryCode = *req.HasCountryCode
 	}
 
-	code, err := h.service.PairPhone(r.Context(), id, req.Phone, hasCountryCode, req.PairingCode, req.DeviceName)
+	clientType := req.ClientType
+	if clientType == "" {
+		clientType = "chrome"
+	}
+
+	deviceName := req.DeviceName
+	if deviceName == "" {
+		deviceName = "Chrome (Linux)"
+	}
+
+	code, err := h.service.PairPhone(r.Context(), id, req.Phone, hasCountryCode, clientType, deviceName)
 	if err != nil {
 		http.Error(w, jsonEncode(&PairResponse{Success: false, Message: err.Error()}), http.StatusInternalServerError)
 		return

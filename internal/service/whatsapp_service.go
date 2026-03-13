@@ -132,7 +132,7 @@ func (s *WhatsAppService) GetQRCode(ctx context.Context, id uuid.UUID) (<-chan s
 	return client.GetQRChannel(ctx)
 }
 
-func (s *WhatsAppService) PairPhone(ctx context.Context, id uuid.UUID, phone string, hasCountryCode bool, pairingCode, deviceName string) (string, error) {
+func (s *WhatsAppService) PairPhone(ctx context.Context, id uuid.UUID, phone string, hasCountryCode bool, clientType, deviceName string) (string, error) {
 	s.mu.RLock()
 	client, ok := s.clients[id]
 	s.mu.RUnlock()
@@ -141,7 +141,7 @@ func (s *WhatsAppService) PairPhone(ctx context.Context, id uuid.UUID, phone str
 		return "", fmt.Errorf("session not found")
 	}
 
-	return client.PairPhone(ctx, phone, hasCountryCode, pairingCode, deviceName)
+	return client.PairPhone(ctx, phone, hasCountryCode, clientType, deviceName)
 }
 
 func (s *WhatsAppService) SendTextMessage(ctx context.Context, sessionID uuid.UUID, recipient, message string) (*models.Message, error) {

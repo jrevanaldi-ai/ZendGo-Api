@@ -1,0 +1,9 @@
+[2026-03-13 03:27:22] Session Created - ID: 6e893117-3a88-4fa8-9b29-9fa6b8ed9d5d, Phone: 628987654321, Status: connecting
+[2026-03-13 03:27:22] API Key: 0ee8b39f9c549303278f8ca4eda1bf838038e129f3cef68244fad5df022a9328
+[2026-03-13 03:27:22] Webhook URL: (empty)
+
+[2026-03-13 03:27:45] Pairing Code Request - Session ID: 6e893117-3a88-4fa8-9b29-9fa6b8ed9d5d
+[2026-03-13 03:27:45] Phone: 628987654321
+[2026-03-13 03:27:45] Client Type: chrome
+[2026-03-13 03:27:45] Device Name: Chrome (Linux)
+[2026-03-13 03:27:45] Pairing Code Generated: MH9S-H9HF
