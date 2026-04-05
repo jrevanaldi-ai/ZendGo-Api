@@ -72,8 +72,8 @@ Kalau belum ada, install dulu.
 ZendGo pakai PostgreSQL untuk nyimpen session dan message.
 
 ```bash
-# Di Termux
-pkg install postgresql
+# Di Terminal
+ install postgresql
 
 # Start PostgreSQL
 pg_ctl -D $PREFIX/var/lib/postgresql start
